@@ -1,5 +1,5 @@
 let QuestionModel = require('../models/questions');
-let AdvertisementModel = require('../models/advertisements');
+let AdModel = require('../models/ad');
 
 module.exports.create = async function (req, res, next) {
     try {
@@ -18,7 +18,7 @@ module.exports.create = async function (req, res, next) {
 
 module.exports.list = async function (req, res, next) {
     try {
-        let list = await QuestionModel.find({}).populate('advertisementId', 'title');
+        let list = await QuestionModel.find({}).populate('adId', 'title');
         res.json(list);
     } catch (error) {
         console.log(error);
@@ -29,7 +29,7 @@ module.exports.list = async function (req, res, next) {
 module.exports.get = async function (req, res, next) {
     try {
         let qID = req.params.questionID;
-        req.question = await QuestionModel.findOne({ _id: qID }).populate('advertisementId', 'title');
+        req.question = await QuestionModel.findOne({ _id: qID }).populate('adId', 'title');
         next();
     } catch (error) {
         console.log(error);

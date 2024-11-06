@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const QuestionSchema = new Schema({
-    advertisementId: { type: Schema.Types.ObjectId, ref: 'Advertisement', required: true },
+    adId: { type: Schema.Types.ObjectId, ref: 'Ad', required: true },
     questionText: { type: String, required: true },
     answerText: { type: String },
     anonymousUserId: { type: String }, // Unique ID to track anonymous user sessions
