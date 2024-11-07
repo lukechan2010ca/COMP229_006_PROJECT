@@ -8,6 +8,9 @@ const QuestionSchema = new Schema({
     anonymousUserId: { type: String }, // Unique ID to track anonymous user sessions
     createdAt: { type: Date, default: Date.now },
     answeredAt: { type: Date }
+},
+{
+    collection: "questions"
 });
 
 module.exports = mongoose.model('Question', QuestionSchema);
