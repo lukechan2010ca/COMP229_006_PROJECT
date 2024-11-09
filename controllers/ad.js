@@ -13,6 +13,22 @@ module.exports.adList = async function (req, res, next) {
 
 }
 
+module.exports.getAdById = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const ad = await AdModel.findById(id).populate('owner');
+
+        if (!ad) {
+            return res.status(404).json({ message: 'Ad not found.' });
+        }
+
+        res.json(ad);
+    } catch (error) {
+        console.log(error);
+        next(error);
+    }
+}
+
 module.exports.processAdd = async (req, res, next) => {
     try {
         console.log("req.payload: ", req.auth);
@@ -41,45 +57,48 @@ module.exports.processAdd = async (req, res, next) => {
 
 module.exports.processEdit = async (req, res, next) => {
     try {
-
         let id = req.params.id;
 
+        // Fetch the ad by ID
         let ad = await AdModel.findById(id);
 
-        if (inventoryItem.owner.toString() !== req.auth.id) {
+        // Check if the ad exists
+        if (!ad) {
+            return res.status(404).json({ message: 'Ad not found.' });
+        }
+
+        // Check if the user is authorized to edit this ad
+        if (ad.owner.toString() !== req.auth.id) {
             return res.status(403).json({ message: 'You are not authorized to edit this item.' });
         }
-        // Builds updatedProduct from the values of the body of the request.
-        let updatedProduct = AdModel({
+
+        // Prepare the update object, excluding the _id field
+        let updatedProduct = {
             title: req.body.title,
             description: req.body.description,
             price: req.body.price,
-            createdAt: req.body.createdAt,
+            updatedAt: Date.now(),
             isActive: req.body.isActive,
             expirationDate: req.body.expirationDate,
             tags: req.body.tags.split(",").map(word => word.trim())
-        });
+        };
 
-        // Submits updatedProduct to the DB and waits for a result.
-        let result = await AdModel.updateOne({ _id: id }, updatedProduct);
-        console.log(result);
+        // Use findByIdAndUpdate to update the ad
+        let result = await AdModel.findByIdAndUpdate(id, updatedProduct, { new: true, runValidators: true });
 
-        // If the product is updated redirects to the list
-        if (result.modifiedCount > 0) {
-            res.json(
-                {
-                    success: true,
-                    message: "Ad updated sucessfully."
-                }
-            );
-        }
-        else {
-            // Express will catch this on its own.
-            throw new Error('Ad not updated. Are you sure it exists?')
+        // If the ad is updated successfully
+        if (result) {
+            res.json({
+                success: true,
+                message: "Ad updated successfully.",
+                ad: result // Return the updated ad
+            });
+        } else {
+            throw new Error('Ad not updated. Are you sure it exists?');
         }
 
     } catch (error) {
-        next(error)
+        next(error);
     }
 }
 
