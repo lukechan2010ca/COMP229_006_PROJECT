@@ -45,7 +45,6 @@ module.exports.processAdd = async (req, res, next) => {
 
         let result = await AdModel.create(newProduct)
 
-        // refresh the book list
         console.log(result);
         res.json(result);
 
@@ -72,7 +71,7 @@ module.exports.processEdit = async (req, res, next) => {
             return res.status(403).json({ message: 'You are not authorized to edit this item.' });
         }
 
-        // Prepare the update object, excluding the _id field
+        // the update object
         let updatedProduct = {
             title: req.body.title,
             description: req.body.description,
@@ -91,7 +90,7 @@ module.exports.processEdit = async (req, res, next) => {
             res.json({
                 success: true,
                 message: "Ad updated successfully.",
-                ad: result // Return the updated ad
+                ad: result
             });
         } else {
             throw new Error('Ad not updated. Are you sure it exists?');
