@@ -3,6 +3,11 @@ let AdModel = require('../models/ad');
 
 module.exports.create = async function (req, res, next) {
     try {
+        let ad = await AdModel.findById(req.body.adId);
+        if (!ad || !ad.isActive) {
+            return res.status(400).json({ message: 'Advertisement is not active or does not exist.' });
+        }
+
         let newQuestion = new QuestionModel(req.body);
         let result = await QuestionModel.create(newQuestion);
         res.json({
