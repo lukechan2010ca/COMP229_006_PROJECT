@@ -8,6 +8,8 @@ let authController = require('../controllers/auth');
 /* GET list of items */
 router.get('/list', adController.adList);
 
+router.get('/get/:id', adController.getAdById);
+
 // Routers for edit
 router.put('/edit/:id', authController.requireSignin, adController.processEdit);
 

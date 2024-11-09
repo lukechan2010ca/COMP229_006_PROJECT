@@ -6,7 +6,6 @@ var logger = require('morgan');
 
 var indexRouter = require('../routes/index');
 var usersRouter = require('../routes/users');
-var inventoryRouter = require('../routes/invetory');
 var questionsRouter = require('../routes/questions');
 var adRouter = require('../routes/ad');
 
@@ -19,7 +18,6 @@ app.use(cookieParser());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/products', inventoryRouter);
 app.use('/questions', questionsRouter);
 app.use('/ad', adRouter);
 
