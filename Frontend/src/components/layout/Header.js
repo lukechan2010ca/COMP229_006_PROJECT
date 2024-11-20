@@ -40,17 +40,17 @@ const Header = () => {
               </li>
               <li className="nav-item dropdown">
                 <Link className='nav-link dropdown-toggle' to="#" role="button" data-bs-toggle="dropdown">
-                  <i className="fa-solid fa-barcode"></i> Inventory
+                  <i className="fa-solid fa-barcode"></i> Ad
                 </Link>
                 <ul className="dropdown-menu">
                   <li>
-                    <NavLink className="dropdown-item" to="/inventory/list">
-                      <i className="fa-regular fa-rectangle-list"></i> Inventory List
+                    <NavLink className="dropdown-item" to="/ad/list">
+                      <i className="fa-regular fa-rectangle-list"></i> Ad List
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink className="dropdown-item" to="/inventory/add">
-                      <i className="fa-solid fa-square-plus"></i> Add a new Item
+                    <NavLink className="dropdown-item" to="/ad/add">
+                      <i className="fa-solid fa-square-plus"></i> Add a new Ad
                     </NavLink>
                   </li>
                 </ul>
