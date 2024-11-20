@@ -13,32 +13,36 @@ const AddAd = () => {
         setAd((prevFormData) => ({ ...prevFormData, [name]: value }));
     };
 
-    
+
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log('Ad state before submission:', ad);
+    
         let newAd = {
-            id : ad.id,
-            title : ad.title,
-            description : ad.description,
-            tags : ad.tags.toString(),
-            price : ad.price,
-            expirationDate: ad.expirationDate
-        }
-
-        create(newAd).then(response => {
-            if(response && response.id)
-            {
-                alert("Item added with the id "+ response.id);
-                navigate("/ad/list");
-            }
-            else{
-                alert(response.message);
-            }
-        }).catch(err => {
-            alert(err.message);
-            console.log(err)
-        });
+            id: ad.id || null,
+            title: ad.title || '',
+            description: ad.description || '',
+            tags: ad.tags || '',
+            price: ad.price || 0,
+            expirationDate: ad.expirationDate || ''
+        };
+    
+        create(newAd)
+            .then((response) => {
+                console.log("API Response:", response);
+                if (response && response._id) { 
+                    alert(`Item added with the ID ${response._id}`);
+                    navigate("/ad/list");
+                } else {
+                    alert(response.message || "Failed to add the item.");
+                }
+            })
+            .catch((err) => {
+                alert(err.message || "An error occurred.");
+                console.error(err);
+            });
     };
+    
 
     return (
         // -- Content for the Add page --
@@ -70,7 +74,7 @@ const AddAd = () => {
                                 id="DescriptionTextField"
                                 placeholder="Description"
                                 name="description"
-                                value={ad.description || 0}
+                                value={ad.description || ''}
                                 onChange={handleChange}
                                 required>
                             </input>

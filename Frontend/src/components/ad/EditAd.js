@@ -86,7 +86,7 @@ const EditAd = () => {
                                 id="DescriptionTextField"
                                 placeholder="Description"
                                 name="description"
-                                value={ad.description || 0}
+                                value={ad.description || ''}
                                 onChange={handleChange}
                                 required>
                             </input>
