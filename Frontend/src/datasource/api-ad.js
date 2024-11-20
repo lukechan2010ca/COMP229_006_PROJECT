@@ -3,7 +3,7 @@ let apiURL = process.env.REACT_APP_APIURL
 
 const list = async () => {
     try {
-        let response = await fetch(apiURL + '/products/list', {
+        let response = await fetch(apiURL + '/ad/list', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -16,16 +16,16 @@ const list = async () => {
     }
 }
 
-const create = async (product) => {
+const create = async (ad) => {
     try {
-        let response = await fetch(apiURL + '/products/add/', {
+        let response = await fetch(apiURL + '/ad/add/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer '+ getToken()
             },
-            body: JSON.stringify(product)
+            body: JSON.stringify(ad)
         })
         return await response.json()
     } catch (err) {
@@ -34,32 +34,17 @@ const create = async (product) => {
 }
 
 
-const remove = async (id) => {
-    try {
-        let response = await fetch(apiURL + '/products/delete/' + id, {
-            method: 'DELETE',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer '+ getToken()
-            }
-        })
-        return await response.json()
-    } catch (err) {
-        console.log(err)
-    }
-}
 
-const update = async (id, item) => {
+const update = async (id, ad) => {
     try {
-        let response = await fetch(apiURL + '/products/edit/' + id, {
+        let response = await fetch(apiURL + '/ad/edit/' + id, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + getToken()
             },
-            body: JSON.stringify(item)
+            body: JSON.stringify(ad)
         })
         return await response.json()
     } catch (err) {
@@ -70,7 +55,7 @@ const update = async (id, item) => {
 
 const read = async (id) => {
     try {
-        let response = await fetch(apiURL + '/products/get/' + id, {
+        let response = await fetch(apiURL + '/ad/get/' + id, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -83,4 +68,4 @@ const read = async (id) => {
     }
 }
 
-export { list, remove, create, update, read }
+export { list, create, update, read }
