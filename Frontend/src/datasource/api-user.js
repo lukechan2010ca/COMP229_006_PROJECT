@@ -18,18 +18,19 @@ const signin = async (user) => {
 
 const signup = async (user) => {
     try {
-        let response = await fetch(apiURL + '/users/register', {
+        let response = await fetch(apiURL + '/users/create', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(user)
-        })
-        return await response.json()
+        });
+        return await response.json();
     } catch (err) {
-        console.log(err)
+        console.log(err);
+        return { error: 'Registration failed' };
     }
-}
+};
 
 export { signin, signup }
