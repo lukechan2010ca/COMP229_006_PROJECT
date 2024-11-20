@@ -9,7 +9,7 @@ import NotFound from "./components/NotFound";
 import ListAd from "./components/ad/ListAd";
 import Signin from "./components/auth/Signin";
 import Signup from "./components/auth/Signup";
-
+import MessageBoard from "./components/questions/MessageBoard";
 import AddAd from "./components/ad/AddAd";
 import EditAd from "./components/ad/EditAd";
 
@@ -29,6 +29,7 @@ export default function App() {
         <Route path="/" element={<Header />}>
           <Route index element={<Home />} />
           <Route path="ad/list" element={<ListAd />} />
+          <Route path="ad/questions/:id" element={<MessageBoard />} />
           <Route path="ad/add" element={
             <PrivateRoute>
               <AddAd />
@@ -39,6 +40,7 @@ export default function App() {
             </PrivateRoute>} />
           <Route path="projects" element={<Projects />} />
           <Route path="about" element={<About />} />
+          
           <Route path="users/signin" element={<Signin />} />
           <Route path="users/signup" element={<Signup />} />
           <Route path="*" element={<NotFound />} />

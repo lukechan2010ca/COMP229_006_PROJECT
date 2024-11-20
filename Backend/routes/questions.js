@@ -9,6 +9,8 @@ router.get('/list', questionsController.list);
 router.post('/create', questionsController.create);
 router.get('/get/:questionID', questionsController.get, questionsController.getByID);
 
+//testing
+router.get('/byAdId/:adId', questionsController.getQuestionsByAdId);
 // Add authentication middleware to restrict answering to questions
 router.put('/answer/:questionID', authController.requireSignin, questionsController.performAnswer);
 
