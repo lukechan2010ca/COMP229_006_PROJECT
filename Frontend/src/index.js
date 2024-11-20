@@ -8,6 +8,7 @@ import About from "./components/About";
 import NotFound from "./components/NotFound";
 import ListAd from "./components/ad/ListAd";
 import Signin from "./components/auth/Signin";
+import Signup from "./components/auth/Signup";
 
 import AddAd from "./components/ad/AddAd";
 import EditAd from "./components/ad/EditAd";
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="projects" element={<Projects />} />
           <Route path="about" element={<About />} />
           <Route path="users/signin" element={<Signin />} />
+          <Route path="users/signup" element={<Signup />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
