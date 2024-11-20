@@ -97,3 +97,9 @@ module.exports.remove = async function (req, res, next) {
         next(error);
     }
 };
+
+module.exports.getQuestionsByAdId = async function (req, res, next) {
+    const adId = req.params.adId;
+    const questions = await QuestionModel.find({ adId: adId }).populate('adId', 'title');
+    res.json(questions);
+  };
