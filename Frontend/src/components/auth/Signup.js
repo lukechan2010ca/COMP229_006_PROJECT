@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { signup } from "../../datasource/api-user";
 
 const Signup = () => {
     const [values, setValues] = useState({
-        name: '',
+        firstName: '',
+        lastName: '',
+        username: '',
         email: '',
         password: '',
         error: '',
         redirect: false
     });
+    const [success, setSuccess] = useState(false); // State for success message
 
-    const navigate = useNavigate(); // Initialize navigate
+    const navigate = useNavigate();
 
     const handleChange = name => event => {
         setValues({ ...values, [name]: event.target.value });
@@ -19,18 +23,24 @@ const Signup = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const user = {
-            name: values.name || undefined,
+            firstName: values.firstName || undefined,
+            lastName: values.lastName || undefined,
+            username: values.username || undefined,
             email: values.email || undefined,
             password: values.password || undefined
         };
 
         try {
-            const response = await Signup(user);
+            const response = await signup(user);
             if (response.error) {
                 setValues({ ...values, error: response.error });
             } else {
                 setValues({ ...values, error: '', redirect: true });
-                navigate('/users/signin'); // Redirect after successful signup
+                setSuccess(true); // Show success message
+                console.log('Success state set to true'); // Debug log
+                setTimeout(() => {
+                    navigate('/users/signin'); // Redirect to login page after 3 seconds
+                }, 3000);
             }
         } catch (err) {
             console.log(err);
@@ -52,45 +62,33 @@ const Signup = () => {
                                     {values.error}
                                 </div>
                             )}
+                            {success && (
+                                <div className="alert alert-success">
+                                    Registration successful! Redirecting to sign in page...
+                                </div>
+                            )}
                             <form onSubmit={handleSubmit}>
                                 <div className="mb-3">
-                                    <label htmlFor="name" className="form-label">Name</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        id="name"
-                                        value={values.name}
-                                        onChange={handleChange('name')}
-                                        required
-                                    />
+                                    <label className="form-label">First Name</label>
+                                    <input type="text" className="form-control" value={values.firstName} onChange={handleChange('firstName')} />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="email" className="form-label">Email</label>
-                                    <input
-                                        type="email"
-                                        className="form-control"
-                                        id="email"
-                                        value={values.email}
-                                        onChange={handleChange('email')}
-                                        required
-                                    />
+                                    <label className="form-label">Last Name</label>
+                                    <input type="text" className="form-control" value={values.lastName} onChange={handleChange('lastName')} />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="password" className="form-label">Password</label>
-                                    <input
-                                        type="password"
-                                        className="form-control"
-                                        id="password"
-                                        value={values.password}
-                                        onChange={handleChange('password')}
-                                        required
-                                    />
+                                    <label className="form-label">Username</label>
+                                    <input type="text" className="form-control" value={values.username} onChange={handleChange('username')} />
                                 </div>
-                                <div className="d-grid">
-                                    <button type="submit" className="btn btn-primary">
-                                        Register
-                                    </button>
+                                <div className="mb-3">
+                                    <label className="form-label">Email</label>
+                                    <input type="email" className="form-control" value={values.email} onChange={handleChange('email')} />
                                 </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Password</label>
+                                    <input type="password" className="form-control" value={values.password} onChange={handleChange('password')} />
+                                </div>
+                                <button type="submit" className="btn btn-primary">Sign Up</button>
                             </form>
                         </div>
                     </div>
@@ -101,4 +99,3 @@ const Signup = () => {
 };
 
 export default Signup;
-
