@@ -1,5 +1,5 @@
 import { getToken } from "../components/auth/auth-helper";
-let apiURL = process.env.REACT_APP_APIURL
+let apiURL = process.env.REACT_APP_API_URL;
 //let apiURL = "http://localhost:3001";
 const list = async () => {
     try {
