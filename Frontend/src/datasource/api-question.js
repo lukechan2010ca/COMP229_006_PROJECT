@@ -1,88 +1,56 @@
 import { getToken } from "../components/auth/auth-helper";
 let apiURL = process.env.REACT_APP_API_URL;
-//let apiURL = "http://localhost:3001";
-const list = async () => {
+
+// Function to get all questions related to an ad by adId
+const getQuestionsByAdId = async (adId) => {
     try {
-        let response = await fetch(apiURL + '/question/list', {
+        let response = await fetch(apiURL + `/questions/byAdId/${adId}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
-        })
+        });
         return await response.json();
     } catch (err) {
-        console.log(err)
+        console.log(err);
     }
-}
+};
 
-const create = async (question) => {
+// Function to create a new question related to an ad
+const createQuestion = async (question) => {
     try {
-        let response = await fetch(apiURL + '/question/create', {
+        let response = await fetch(apiURL + '/questions/create', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getToken()
             },
             body: JSON.stringify(question)
-        })
-        return await response.json()
+        });
+        return await response.json();
     } catch (err) {
-        console.log(err)
+        console.log(err);
     }
-}
+};
 
-
-
-const getQuestion = async (id, question) => {
+// Function to answer a question if the user is the owner of the ad
+const answerQuestion = async (questionId, answerText) => {
     try {
-        let response = await fetch(apiURL + '/question/get/' + id, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(question)
-        })
-        return await response.json()
-    } catch (err) {
-        console.log(err)
-    }
-}
-
-
-const answer = async (id) => {
-    try {
-        let response = await fetch(apiURL + '/question/get/' + id, {
+        let response = await fetch(apiURL + `/questions/answer/${questionId}`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + getToken()
-            }
-        })
-        return await response.json()
-    } catch (err) {
-        console.log(err)
-    }
-}
-
-const deleteQuestion = async (id,question) => {
-    try {
-        let response = await fetch(apiURL + '/question/delete/' + id, {
-            method: 'DELETE',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + getToken()
             },
-            body: JSON.stringify(question)
-        })
-        return await response.json()
+            body: JSON.stringify({ answerText })
+        });
+        return await response.json();
     } catch (err) {
-        console.log(err)
+        console.log(err);
     }
-}
+};
 
-
-export { list, create, getQuestion, answer, deleteQuestion }
+export { getQuestionsByAdId, createQuestion, answerQuestion };

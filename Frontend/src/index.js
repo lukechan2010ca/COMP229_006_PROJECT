@@ -28,8 +28,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Header />}>
           <Route index element={<Home />} />
-          <Route path="ad/list" element={<ListAd />} />
-          <Route path="ad/questions/:id" element={<MessageBoard />} />
+          <Route path="ad/list" element={<ListAd />} />         
+          <Route path="ad/questions/:adId" element={<MessageBoard />} />
           <Route path="ad/add" element={
             <PrivateRoute>
               <AddAd />
