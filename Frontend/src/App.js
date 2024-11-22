@@ -11,4 +11,3 @@ function App({ items }) {
     );
 }
 export default App;
-

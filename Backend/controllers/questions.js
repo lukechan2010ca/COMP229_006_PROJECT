@@ -3,7 +3,14 @@ let AdModel = require('../models/ad');
 
 module.exports.create = async function (req, res, next) {
     try {
-        let ad = await AdModel.findById(req.body.adId);
+        const { adId } = req.body;
+
+        // Validate adId
+        if (!adId || !mongoose.Types.ObjectId.isValid(adId)) {
+            return res.status(400).json({ message: 'Invalid adId provided.' });
+        }
+
+        let ad = await AdModel.findById(adId);
         if (!ad || !ad.isActive) {
             return res.status(400).json({ message: 'Advertisement is not active or does not exist.' });
         }
@@ -12,13 +19,15 @@ module.exports.create = async function (req, res, next) {
         let result = await QuestionModel.create(newQuestion);
         res.json({
             success: true,
-            message: 'Question created successfully.'
+            message: 'Question created successfully.',
+            data: result
         });
     } catch (error) {
         console.log(error);
         next(error);
     }
 };
+
 
 module.exports.list = async function (req, res, next) {
     try {
@@ -98,8 +107,46 @@ module.exports.remove = async function (req, res, next) {
     }
 };
 
+// module.exports.getQuestionsByAdId = async function (req, res, next) {
+//     const adId = req.params.adId;
+//     const questions = await QuestionModel.find({ adId: adId }).populate('adId', 'title');
+//     res.json(questions);
+//   };
+
+const mongoose = require('mongoose');
+
 module.exports.getQuestionsByAdId = async function (req, res, next) {
-    const adId = req.params.adId;
-    const questions = await QuestionModel.find({ adId: adId }).populate('adId', 'title');
-    res.json(questions);
-  };
+    try {
+        const adId = req.params.adId;
+
+        // Validate and convert adId to ObjectId
+        if (!adId || adId === "undefined" || !mongoose.Types.ObjectId.isValid(adId)) {
+            return res.status(400).json({ message: "Invalid adId provided." });
+        }
+
+        const questions = await QuestionModel.find({ adId: new mongoose.Types.ObjectId(adId) }).populate('adId', 'title');
+        res.json(questions);
+    } catch (error) {
+        console.error("Error in getQuestionsByAdId:", error);
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+
+
+// module.exports.getQuestionsByAdId = async function (req, res, next) {
+//     try {
+//         const adId = req.params.adId;
+
+//         // Validate adId
+//         if (!adId || adId === "undefined") {
+//             return res.status(400).json({ message: "Invalid adId provided." });
+//         }
+
+//         const questions = await QuestionModel.find({ adId: adId }).populate('adId', 'title');
+//         res.json(questions);
+//     } catch (error) {
+//         console.error("Error in getQuestionsByAdId:", error);
+//         next(error);
+//     }
+// };
