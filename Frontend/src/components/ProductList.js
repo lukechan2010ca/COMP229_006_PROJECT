@@ -1,7 +1,8 @@
 import React from 'react';
 import { useEffect, useState } from "react";
 
-let apiURL = "http://localhost:3001";
+let apiURL = process.env.REACT_APP_API_URL;
+//let apiURL = "http://localhost:3001";
 const list = async () => {
   try {
     let response = await fetch(apiURL + '/ad/list', {
@@ -16,40 +17,6 @@ const list = async () => {
     console.log(err)
   }
 }
-
-/*function ProductList() {
-  const products = [
-    {
-      id: 1,
-      name: "Used Laptop",
-      price: "$500",
-      image: "/images/laptop.jpg",
-      link: "/product/1"
-    },
-    {
-      id: 2,
-      name: "Vintage Chair",
-      price: "$150",
-      image: "/images/chair.jpg",
-      link: "/product/2"
-    },
-    // Add more products as needed
-  ];
-
-  return (
-    <div className="product-grid">
-      {products.map(product => (
-        <div key={product.id} className="product-card">
-          <img src={product.image} alt={product.name} />
-          <h3>{product.name}</h3>
-          <p>{product.price}</p>
-          <a href={product.link}>View Details</a>
-        </div>
-      ))}
-    </div>
-  );
-}
-*/
 
 const ProductList = () => {
   let [adList, setAdList] = useState([]);
