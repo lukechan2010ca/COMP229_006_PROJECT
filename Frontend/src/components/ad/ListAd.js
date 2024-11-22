@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { list } from "../../datasource/api-ad";
 import { Link } from "react-router-dom";
+import { isAuthenticated } from "../auth/auth-helper";
+
 let apiURL = process.env.REACT_APP_API_URL;
 const ListAd = () => {
     let [adList, setAdList] = useState([]);
     let [isLoading, setIsLoading] = useState(true);
+    const currentUser = isAuthenticated();
 
     useEffect(() => {
         list().then((data) => {
@@ -42,11 +45,14 @@ const ListAd = () => {
                                     <th className="text-center">Price</th>
                                     <th className="text-center">Expiration Date</th>
                                     <th className="text-center">Tags</th>
+                                    <th className="text-center">Active</th>
+                                    <th className="text-center">Expired</th>
                                     <th className="text-center" colSpan="4">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {adList.map((ad, i) => {
+                                    const isExpired = ad.expirationDate && new Date(ad.expirationDate) < new Date();
                                     return (
                                         <tr key={i}>
                                             <td className="text-center">{ad.title || ''}</td>
@@ -54,10 +60,14 @@ const ListAd = () => {
                                             <td className="text-center">{ad.price || ''}</td>
                                             <td className="text-center">{ad.expirationDate || ''}</td>
                                             <td className="text-center">{ad.tags.toString() || ''}</td>
+                                            <td className="text-center">{ad.isActive ? "Yes" : "No"}</td>
+                                            <td className="text-center">{isExpired ? "Expired" : ""}</td>
                                             <td className="text-center">
+                                            {currentUser && currentUser.userId === ad.owner._id && (
                                                 <Link className="btn bg-primary btn-primary btn-sm" to={`/ad/edit/${ad._id}`}>
                                                     <i className="fas fa-pencil-alt"></i>
                                                 </Link>
+                                                )}
                                             </td>
                                             <td className="text-center">
                                                 <Link className="btn btn-secondary btn-sm" to={`/ad/questions/${ad._id}`}>
