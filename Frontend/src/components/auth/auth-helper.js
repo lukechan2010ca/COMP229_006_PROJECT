@@ -6,7 +6,8 @@ const authenticate = (token, cb) => {
 
         let decoded = jwtDecode(token);
         sessionStorage.setItem('username', decoded.username)
-        sessionStorage.setItem('userId', decoded.userId);
+        sessionStorage.setItem('id', decoded.id);
+        
     }
     cb();
 }
@@ -36,13 +37,14 @@ const getUserId = () => {
     if (typeof window === "undefined") {
         return false;
     }
-    return sessionStorage.getItem('userId');
+    return sessionStorage.getItem('id');
 };
 
 const clearJWT = () => {
     if (typeof window !== "undefined") {
         sessionStorage.removeItem('token');
         sessionStorage.removeItem('username');
+        sessionStorage.removeItem('id');
     }
 }
 
