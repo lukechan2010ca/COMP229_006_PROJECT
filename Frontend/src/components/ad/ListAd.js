@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { list } from "../../datasource/api-ad";
 import { Link } from "react-router-dom";
-import { isAuthenticated } from "../auth/auth-helper";
+import { getUserId, isAuthenticated } from "../auth/auth-helper";
 
 let apiURL = process.env.REACT_APP_API_URL;
 const ListAd = () => {
     let [adList, setAdList] = useState([]);
     let [isLoading, setIsLoading] = useState(true);
     const currentUser = isAuthenticated();
-
+    const currentUserID = getUserId();
     useEffect(() => {
         list().then((data) => {
             if (data) {
@@ -63,7 +63,7 @@ const ListAd = () => {
                                             <td className="text-center">{ad.isActive ? "Yes" : "No"}</td>
                                             <td className="text-center">{isExpired ? "Expired" : ""}</td>
                                             <td className="text-center">
-                                            {currentUser && currentUser.userId === ad.owner._id && (
+                                            {currentUser && currentUserID === ad.owner.id && (
                                                 <Link className="btn bg-primary btn-primary btn-sm" to={`/ad/edit/${ad._id}`}>
                                                     <i className="fas fa-pencil-alt"></i>
                                                 </Link>
