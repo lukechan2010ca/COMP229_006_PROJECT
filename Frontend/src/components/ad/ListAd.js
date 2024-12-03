@@ -71,7 +71,7 @@ const ListAd = () => {
                                             </td>
                                             <td className="text-center">
                                                 <Link className="btn btn-secondary btn-sm" to={`/ad/questions/${ad._id}`}>
-                                                    <i className="fas fa-comments"></i> Message Board
+                                                    <i className="fas fa-comments"></i> Product Details
                                                 </Link>
                                             </td>
                                         </tr>
