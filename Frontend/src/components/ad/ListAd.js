@@ -3,7 +3,7 @@ import { list } from "../../datasource/api-ad";
 import { Link } from "react-router-dom";
 import { getUserId, isAuthenticated } from "../auth/auth-helper";
 
-let apiURL = process.env.REACT_APP_API_URL;
+//let apiURL = process.env.REACT_APP_API_URL;
 const ListAd = () => {
     let [adList, setAdList] = useState([]);
     let [isLoading, setIsLoading] = useState(true);

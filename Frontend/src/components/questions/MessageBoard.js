@@ -2,15 +2,21 @@ import { useEffect, useState } from "react";//managing component lifecycle
 import { useParams } from "react-router-dom";//extract URL parameters
 import { getQuestionsByAdId, createQuestion, answerQuestion } from "../../datasource/api-question";
 import { getToken } from "../auth/auth-helper";
+<<<<<<< HEAD
 import { read as getAdById } from "../../datasource/api-ad"; // Change this line to import 'read' as 'getAdById'
 
+=======
+import { read } from "../../datasource/api-ad";
+>>>>>>> Jesse001
 //define functional component
 const MessageBoard = () => {
     let { adId } = useParams();
     console.log("Ad ID:", adId);
+
     let [questions, setQuestions] = useState([]);
     let [isLoading, setIsLoading] = useState(true);
     let [newQuestion, setNewQuestion] = useState("");
+<<<<<<< HEAD
     let [adDetails, setAdDetails] = useState({});
     let [isAdLoading, setIsAdLoading] = useState(true);
 
@@ -30,9 +36,13 @@ const MessageBoard = () => {
                 });
         }
     }, [adId]);
+=======
+    let [adDetails, setAdDetails] = useState(null); // State for product details
+>>>>>>> Jesse001
 
     useEffect(() => {
         if (adId) {
+            // Fetch questions
             getQuestionsByAdId(adId)
                 .then((data) => {
                     if (data) {
@@ -42,7 +52,19 @@ const MessageBoard = () => {
                 })
                 .catch((err) => {
                     alert(err.message);
-                    console.log(err);
+                    console.error(err);
+                });
+
+            // Fetch ad details
+            read(adId)
+                .then((data) => {
+                    if (data) {
+                        setAdDetails(data);
+                    }
+                })
+                .catch((err) => {
+                    alert("Error fetching product details");
+                    console.error(err);
                 });
         }
     }, [adId]);
@@ -50,8 +72,6 @@ const MessageBoard = () => {
     const handleQuestionSubmit = (e) => {
         e.preventDefault();
         if (newQuestion.trim()) {
-            console.log("Submitting Question with adId:", adId);
-            
             createQuestion({ adId, questionText: newQuestion })
                 .then((response) => {
                     if (response.success) {
@@ -76,7 +96,6 @@ const MessageBoard = () => {
     const handleAnswerSubmit = (e, questionId, index) => {
         e.preventDefault();
         const answerText = questions[index].answer;
-        //get the user’s authentication token
         if (!getToken()) {
             alert("You need to be signed in to answer questions.");
             return;
@@ -101,6 +120,7 @@ const MessageBoard = () => {
 
     return (
         <div className="container" style={{ paddingTop: 80 }}>
+<<<<<<< HEAD
             {/* Product Details Section */}
             <h1>Product Details</h1>
             {isAdLoading ? (
@@ -121,7 +141,22 @@ const MessageBoard = () => {
 
             {/* Message Board Section */}
             <h1>Message Board</h1>
+=======
+            
+>>>>>>> Jesse001
 
+            {/* Product Details Section */}
+            {adDetails && (
+                <div className="mb-4">
+                    <h2>Product Details</h2>
+                    <p><strong>Title:</strong> {adDetails.title}</p>
+                    <p><strong>Description:</strong> {adDetails.description}</p>
+                    <p><strong>Price:</strong> ${adDetails.price}</p>
+                    <p><strong>Expiration Date:</strong> {adDetails.expirationDate}</p>
+                    <p><strong>Tags:</strong> {adDetails.tags?.join(", ")}</p>
+                </div>
+            )}
+            <h1>Message Board</h1>
             <form onSubmit={handleQuestionSubmit} className="form">
                 <div className="form-group">
                     <label htmlFor="newQuestion">Ask a Question:</label>
@@ -136,7 +171,7 @@ const MessageBoard = () => {
                 </div>
                 <button type="submit" className="btn btn-primary mt-2">Submit Question</button>
             </form>
-
+            
             <h3 className="mt-4">Questions:</h3>
             {isLoading ? (
                 <div>Loading...</div>
@@ -172,5 +207,8 @@ const MessageBoard = () => {
 };
 
 export default MessageBoard;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> Jesse001
