@@ -9,8 +9,11 @@ const AddAd = () => {
     let [ad, setAd] = useState(new AdModel());
 
     const handleChange = (event) => {
-        const { name, value } = event.target;
-        setAd((prevFormData) => ({ ...prevFormData, [name]: value }));
+        const { name, value , type, checked } = event.target;
+        setAd((prevFormData) => ({
+            ...prevFormData,
+            [name]: type === "checkbox" ? checked : value,
+        }));
     };
 
 
@@ -24,7 +27,8 @@ const AddAd = () => {
             description: ad.description || '',
             tags: ad.tags || '',
             price: ad.price || 0,
-            expirationDate: ad.expirationDate || ''
+            expirationDate: ad.expirationDate || '',
+            isActive: ad.isActive || false
         };
     
         create(newAd)
@@ -110,6 +114,18 @@ const AddAd = () => {
                                 value={ad.tags || ''}
                                 onChange={handleChange}>
                             </textarea>
+                        </div>
+                        <br />
+                        <div className="form-group">
+                            <label htmlFor="isActiveCheck">Active</label>
+                            <input
+                                type="checkbox"
+                                className="form-check-input"
+                                id="isActiveCheck"
+                                name="isActive"
+                                checked={ad.isActive || false} 
+                                onChange={handleChange}
+                            />
                         </div>
                         <br />
 

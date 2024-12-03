@@ -1,5 +1,15 @@
-const Home = () => {
-    return <h1>Home</h1>;
-};
+import ProductList from './ProductList.js';
 
-export default Home;
+function App() {
+
+    return (
+      <div className="App">
+        <main className="container">
+          <h1>Welcome to Used Products Trading Site</h1>
+          <ProductList />
+        </main>
+      </div>
+    );
+  }
+  
+  export default App;

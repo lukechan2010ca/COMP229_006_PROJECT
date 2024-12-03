@@ -3,8 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Home from "./components/Home";
-import Projects from "./components/Projects";
-import About from "./components/About";
+
 import NotFound from "./components/NotFound";
 import ListAd from "./components/ad/ListAd";
 import Signin from "./components/auth/Signin";
@@ -38,8 +37,6 @@ export default function App() {
             <PrivateRoute>
               <EditAd />
             </PrivateRoute>} />
-          <Route path="projects" element={<Projects />} />
-          <Route path="about" element={<About />} />
           
           <Route path="users/signin" element={<Signin />} />
           <Route path="users/signup" element={<Signup />} />

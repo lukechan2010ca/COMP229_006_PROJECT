@@ -18,7 +18,8 @@ const EditAd = () => {
                     response.description,
                     response.tags,
                     response.price,
-                    response.expirationDate));
+                    response.expirationDate,
+                    response.isActive));
             }
         }).catch(err => {
             alert(err.message);
@@ -27,8 +28,11 @@ const EditAd = () => {
     }, [id]);
 
     const handleChange = (event) => {
-        const { name, value } = event.target;
-        setAd((prevFormData) => ({ ...prevFormData, [name]: value }));
+        const { name, value , type, checked } = event.target;
+        setAd((prevFormData) => ({
+            ...prevFormData,
+            [name]: type === "checkbox" ? checked : value,
+        }));
     };
 
     const handleSubmit = (event) => {
@@ -39,7 +43,8 @@ const EditAd = () => {
             description: ad.description,
             tags: ad.tags.toString(),
             price: ad.price,
-            expirationDate: ad.expirationDate
+            expirationDate: ad.expirationDate,
+            isActive: ad.isActive || false
         }
 
         update(id, newAd).then(response => {
@@ -122,6 +127,18 @@ const EditAd = () => {
                                 value={ad.tags || ''}
                                 onChange={handleChange}>
                             </textarea>
+                        </div>
+                        <br />
+                        <div className="form-group">
+                            <label htmlFor="isActiveCheck">Active</label>
+                            <input
+                                type="checkbox"
+                                className="form-check-input"
+                                id="isActiveCheck"
+                                name="isActive"
+                                checked={ad.isActive || false}
+                                onChange={handleChange}
+                            />
                         </div>
                         <br />
 
