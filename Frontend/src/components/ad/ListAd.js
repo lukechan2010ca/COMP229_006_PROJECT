@@ -3,7 +3,7 @@ import { list } from "../../datasource/api-ad";
 import { Link } from "react-router-dom";
 import { getUserId, isAuthenticated } from "../auth/auth-helper";
 
-let apiURL = process.env.REACT_APP_API_URL;
+//let apiURL = process.env.REACT_APP_API_URL;
 const ListAd = () => {
     let [adList, setAdList] = useState([]);
     let [isLoading, setIsLoading] = useState(true);
@@ -71,7 +71,7 @@ const ListAd = () => {
                                             </td>
                                             <td className="text-center">
                                                 <Link className="btn btn-secondary btn-sm" to={`/ad/questions/${ad._id}`}>
-                                                    <i className="fas fa-comments"></i> Message Board
+                                                    <i className="fas fa-comments"></i> Product Details
                                                 </Link>
                                             </td>
                                         </tr>
