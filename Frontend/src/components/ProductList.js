@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 let apiURL = process.env.REACT_APP_API_URL;
@@ -39,11 +40,12 @@ const ProductList = () => {
       {isLoading && <div>Loading...</div>}
       {!isLoading &&
         <div className="product-grid">
-          {adList.map((ad, i) => {
+          {adList.filter(ad => ad.isActive && !(ad.expirationDate && new Date(ad.expirationDate) < new Date())).map((ad, i) => {
             return (
               <div key={i} className="product-card">
                 <h3>{ad.title}</h3>
                 <p>{ad.price}</p>
+                <Link  to={`/ad/questions/${ad._id}`}>Product details</Link>
               </div>
             )
           })}
