@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";//managing component lifecycle
 import { useParams } from "react-router-dom";//extract URL parameters
 import { getQuestionsByAdId, createQuestion, answerQuestion } from "../../datasource/api-question";
 import { getToken } from "../auth/auth-helper";
-<<<<<<< HEAD
-import { read as getAdById } from "../../datasource/api-ad"; // Change this line to import 'read' as 'getAdById'
-
 import { read } from "../../datasource/api-ad";
->>>>>>> Jesse001
 //define functional component
 const MessageBoard = () => {
     let { adId } = useParams();
@@ -15,29 +11,7 @@ const MessageBoard = () => {
     let [questions, setQuestions] = useState([]);
     let [isLoading, setIsLoading] = useState(true);
     let [newQuestion, setNewQuestion] = useState("");
-<<<<<<< HEAD
-    let [adDetails, setAdDetails] = useState({});
-    let [isAdLoading, setIsAdLoading] = useState(true);
-
-    // Fetch ad details to show product details
-    useEffect(() => {
-        if (adId) {
-            getAdById(adId)
-                .then((data) => {
-                    if (data) {
-                        setAdDetails(data);
-                    }
-                    setIsAdLoading(false);
-                })
-                .catch((err) => {
-                    alert(err.message);
-                    console.log(err);
-                });
-        }
-    }, [adId]);
-=======
     let [adDetails, setAdDetails] = useState(null); // State for product details
->>>>>>> Jesse001
 
     useEffect(() => {
         if (adId) {
@@ -119,30 +93,7 @@ const MessageBoard = () => {
 
     return (
         <div className="container" style={{ paddingTop: 80 }}>
-<<<<<<< HEAD
-            {/* Product Details Section */}
-            <h1>Product Details</h1>
-            {isAdLoading ? (
-                <div>Loading product details...</div>
-            ) : (
-                <div className="card mb-4">
-                    <div className="card-body">
-                        <h5 className="card-title">{adDetails.title}</h5>
-                        <p className="card-text"><strong>Description: </strong>{adDetails.description}</p>
-                        <p className="card-text"><strong>Price: </strong>${adDetails.price}</p>
-                        <p className="card-text"><strong>Expiration Date: </strong>{adDetails.expirationDate}</p>
-                        <p className="card-text"><strong>Tags: </strong>{adDetails.tags?.toString()}</p>
-                        <p className="card-text"><strong>Active: </strong>{adDetails.isActive ? "Yes" : "No"}</p>
-                        <p className="card-text"><strong>Expired: </strong>{new Date(adDetails.expirationDate) < new Date() ? "Expired" : "No"}</p>
-                    </div>
-                </div>
-            )}
-
-            {/* Message Board Section */}
-            <h1>Message Board</h1>
-=======
             
->>>>>>> Jesse001
 
             {/* Product Details Section */}
             {adDetails && (
@@ -206,8 +157,3 @@ const MessageBoard = () => {
 };
 
 export default MessageBoard;
-<<<<<<< HEAD
-
-
-=======
->>>>>>> Jesse001
