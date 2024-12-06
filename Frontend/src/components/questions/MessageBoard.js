@@ -5,7 +5,6 @@ import { getToken } from "../auth/auth-helper";
 <<<<<<< HEAD
 import { read as getAdById } from "../../datasource/api-ad"; // Change this line to import 'read' as 'getAdById'
 
-=======
 import { read } from "../../datasource/api-ad";
 >>>>>>> Jesse001
 //define functional component
