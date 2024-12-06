@@ -11,7 +11,7 @@ import Signup from "./components/auth/Signup";
 import MessageBoard from "./components/questions/MessageBoard";
 import AddAd from "./components/ad/AddAd";
 import EditAd from "./components/ad/EditAd";
-
+import PrivateAd from "./components/ad/PrivateAd";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css"
 import "./index.css";
@@ -37,6 +37,10 @@ export default function App() {
             <PrivateRoute>
               <EditAd />
             </PrivateRoute>} />
+          <Route path="ad/private" element={
+          <PrivateRoute>
+            <PrivateAd />
+          </PrivateRoute>} />
           
           <Route path="users/signin" element={<Signin />} />
           <Route path="users/signup" element={<Signup />} />
