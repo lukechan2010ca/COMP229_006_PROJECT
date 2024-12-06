@@ -39,6 +39,11 @@ const Header = () => {
                     </NavLink>
                   </li>
                   <li>
+                    <NavLink className="dropdown-item" to="/ad/private">
+                      <i className="fa-regular fa-rectangle-list"></i> Private List
+                    </NavLink>
+                  </li>
+                  <li>
                     <NavLink className="dropdown-item" to="/ad/add">
                       <i className="fa-solid fa-square-plus"></i> Add a new Ad
                     </NavLink>
