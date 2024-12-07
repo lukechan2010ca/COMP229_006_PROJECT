@@ -1,6 +1,6 @@
 import { Outlet, NavLink, Link, useLocation } from "react-router-dom";
 import team_logo from "../../assets/team_logo.jpg"
-import { isAuthenticated, getUsername, clearJWT } from "../auth/auth-helper";
+import { isAuthenticated, getUsername, clearJWT,getUserId } from "../auth/auth-helper";
 import backgroundImage from '../../assets/background.jpeg';
 
 
@@ -66,6 +66,12 @@ const Header = () => {
                 {isAuthenticated() &&
                   <Link className="nav-link" to="/" onClick={signoutClick}>
                     <i className="fa-solid fa-right-from-bracket"></i> Sign-out ({getUsername()})
+                  </Link>}
+              </li>
+              <li className="nav-item">
+                {isAuthenticated() &&
+                  <Link className="nav-link" to={`/users/editProfile/${getUserId()}`}>
+                    <i className="fa-solid fa-user"></i> Edit Profile
                   </Link>}
               </li>
             </ul>
