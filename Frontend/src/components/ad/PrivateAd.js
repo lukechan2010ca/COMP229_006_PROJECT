@@ -65,7 +65,11 @@ const PrivateAd = () => {
                                             <td className="text-center">{ad.title || ''}</td>
                                             <td className="text-center">{ad.description || ''}</td>
                                             <td className="text-center">{ad.price || ''}</td>
-                                            <td className="text-center">{ad.expirationDate || ''}</td>
+                                            <td className="text-center">
+                                                {ad.expirationDate
+                                                    ? new Date(ad.expirationDate).toLocaleDateString('en-CA')
+                                                    : ''}
+                                            </td>
                                             <td className="text-center">{ad.tags.toString() || ''}</td>
                                             <td className="text-center">{ad.isActive ? "Yes" : "No"}</td>
                                             <td className="text-center">{isExpired ? "Expired" : "No"}</td>
