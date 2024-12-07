@@ -133,7 +133,7 @@ const EditProfile = () => {
                                     {user.loading ? 'Updating...' : 'Update Profile'}
                                 </button>
                             </form>
-                            <Link href="#" to="/" className="btn btn-warning">
+                            <Link href="#" to="/" className="btn btn-warning" style={{color: 'white'}}>
                                 <i className="fas fa-undo"></i>
                                 Back to Homepage
                             </Link>
