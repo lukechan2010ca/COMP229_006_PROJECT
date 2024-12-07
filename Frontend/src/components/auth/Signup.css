@@ -16,9 +16,11 @@
   .card-header h2 {
     margin: 0;
     font-weight: 600;
-    text-transform: uppercase;
     letter-spacing: 1px;
     color: black;
+    text-shadow: 
+    1px 1px 1px grey,
+    -1px -1px 1px grey;
   }
   
   .card-body {
@@ -54,24 +56,39 @@
   .btn-primary:hover {
     background: linear-gradient(to right, rgb(28, 28, 28), gold);
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.2);
   }
 
   .btn-warning {
-    background: linear-gradient(to right, rgb(28, 28, 28), rgba(192, 192, 192, 0.73));
+    background: linear-gradient(to right, rgb(28, 28, 28), rgba(192, 192, 192, 0.8));
     border: #FFC107;
     padding: 12px 20px;
     width: 100%;
     border-radius: 8px;
     transition: all 0.3s ease;
-    padding-top: 1em;
+    margin-top: 1em;
   }
   
   .btn-warning:hover {
     background: linear-gradient(to right, rgb(28, 28, 28), rgb(255, 105, 105));
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);
     color: black;
+  }
+
+  .btn-primary mt-2 {
+    background: linear-gradient(to right, rgb(28, 28, 28), rgba(192, 192, 192, 0.73));
+    border: #224abe;
+    padding: 12px 20px;
+    width: 100%;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary mt-2:hover {
+    background: linear-gradient(to right, rgb(28, 28, 28), rgba(32, 153, 66, 0.73));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.2);
   }
   
   .alert-danger, .alert-success {
