@@ -52,7 +52,6 @@ const EditProfile = () => {
             if (response && response.success) {
                 alert(response.message);
                 navigate("/");
-                setSuccess(true);
             } else {
                 alert(response.message);
             }
