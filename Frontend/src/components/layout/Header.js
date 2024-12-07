@@ -40,9 +40,9 @@ const Header = () => {
                 <Link className='nav-link dropdown-toggle' to="#" role="button" data-bs-toggle="dropdown">
                   <i className="fa-solid fa-barcode"></i> Ad
                 </Link>
-                <ul className="dropdown-menu">
+                <ul className="dropdown-menu" style={{backgroundColor: "rgba(255, 0, 0, 0.5)" }}>
                   <li>
-                    <NavLink className="dropdown-item" to="/ad/list">
+                    <NavLink className="dropdown-item" to="/ad/list"> 
                       <i className="fa-regular fa-rectangle-list"></i> Ad List
                     </NavLink>
                   </li>
