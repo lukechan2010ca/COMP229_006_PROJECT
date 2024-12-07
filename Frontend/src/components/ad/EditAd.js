@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { read, update } from "../../datasource/api-ad";
 import AdModel from "../../datasource/adModel";
+import '../ad/Ad.css';
 
 const EditAd = () => {
 

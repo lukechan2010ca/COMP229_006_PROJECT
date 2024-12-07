@@ -5,10 +5,37 @@ html {
 body {
   font: "Lucida Grande", Helvetica, Arial, sans-serif;
   padding-bottom:20px;
+  background-image: url('../src/assets/background4.jpg');
+  background-size: cover; /* Covers entire page */
+  background-position: center; /* Centers the image */
+  background-repeat:repeat; /* Prevents image from repeating */
+  min-height: 100vh; /* Full viewport height */
 }
+
 h1 {
-  color: #00B7FF;
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+  padding-top: 30px;
+  position: relative;
+  font-weight: 600;
+  text-shadow: 
+  1px 1px 1px grey,
+  -1px -1px 1px grey;
+
 }
+  /* Add an underline effect to the heading */
+  h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 3px;
+    background: linear-gradient(to right, white, yellow);
+  }
+
 footer {
   position: fixed;
   left: 0;
@@ -43,6 +70,51 @@ footer {
   border-radius: 4px;
 }
 
-h1{
-  text-align: center;
+
+.custom-navbar {
+  /* Replicating bg-dark */
+  background-color: #343a40; /* Bootstrap's dark background color */
+  color: white; /* Ensures light text on dark background */
+
+  /* Replicating navbar-dark */
+  /* Makes links and text light-colored */
+  --bs-navbar-color: rgba(255, 255, 255, 0.55);
+  --bs-navbar-hover-color: rgba(255, 255, 255, 0.75);
+  --bs-navbar-active-color: rgba(255, 255, 255, 0.75);
+
+  /* Replicating navbar-expand-sm */
+  @media (min-width: 576px) {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+
+  /* Additional navbar styling */
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+/* Styles for nav links */
+.custom-navbar .nav-link {
+  color: var(--bs-navbar-color);
+  padding: 0.5rem 1rem;
+}
+
+.custom-navbar .nav-link:hover,
+.custom-navbar .nav-link:focus {
+  color: var(--bs-navbar-hover-color);
+}
+
+.custom-navbar .nav-link.active {
+  color: var(--bs-navbar-active-color);
+}
+
+/* Navbar toggler for smaller screens */
+.custom-navbar-toggler {
+  padding: 0.25rem 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
 }

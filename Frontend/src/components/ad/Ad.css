@@ -1,0 +1,17 @@
+.container{
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Styles */
+.table {
+    width: 100%;
+    border-collapse: separate; /* Separate borders to allow rounding */
+    border-spacing: 0; /* Remove gaps between cells */
+    border-radius: 5px; /* Rounded corners for the table */
+    overflow: hidden; /* Ensure content stays inside rounded corners */
+    box-shadow: 1px 4px 8px rgba(224, 35, 35, 0.9); /* Add shadow for depth */
+    background-color: rgba(31, 31, 31, 0.5);
+  }
+

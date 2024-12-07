@@ -1,9 +1,11 @@
 import { Outlet, NavLink, Link, useLocation } from "react-router-dom";
 import team_logo from "../../assets/team_logo.jpg"
-import { isAuthenticated, getUsername, clearJWT } from "../auth/auth-helper";
+import { isAuthenticated, getUsername, clearJWT,getUserId } from "../auth/auth-helper";
+import backgroundImage from '../../assets/background.jpeg';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-
-const Header = () => {
+const Header = () => {  
 
   const location = useLocation();
 
@@ -13,7 +15,14 @@ const Header = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+      <nav className="navbar navbar-expand-sm bg-dark navbar-dark custom-navbar" style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        borderBottom: '1px solid #ff0000',
+        position: 'relative',
+        boxShadow: '0 3px 10px rgba(255, 0, 0, 0.6)'
+      }}>
         <div className="container-fluid">
           <NavLink className="navbar-brand" to="/">
             <img src={team_logo} alt="logo" style={{ width: 40 }} />
@@ -29,13 +38,18 @@ const Header = () => {
                 </NavLink>
               </li>
               <li className="nav-item dropdown">
-                <Link className='nav-link dropdown-toggle' to="#" role="button" data-bs-toggle="dropdown">
+                <Link className='nav-link dropdown-toggle' to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i className="fa-solid fa-barcode"></i> Ad
                 </Link>
-                <ul className="dropdown-menu">
+                <ul className="dropdown-menu" style={{backgroundColor: "rgba(255, 255, 255, 0.8)" }}>
                   <li>
-                    <NavLink className="dropdown-item" to="/ad/list">
+                    <NavLink className="dropdown-item" to="/ad/list"> 
                       <i className="fa-regular fa-rectangle-list"></i> Ad List
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink className="dropdown-item" to="/ad/private">
+                      <i className="fa-regular fa-rectangle-list"></i> Private List
                     </NavLink>
                   </li>
                   <li>
@@ -55,6 +69,12 @@ const Header = () => {
                     <i className="fa-solid fa-right-from-bracket"></i> Sign-out ({getUsername()})
                   </Link>}
               </li>
+              <li className="nav-item">
+                {isAuthenticated() &&
+                  <Link className="nav-link" to={`/users/editProfile/${getUserId()}`}>
+                    <i className="fa-solid fa-user"></i> Edit Profile
+                  </Link>}
+              </li>
             </ul>
           </div>
         </div>
@@ -66,4 +86,3 @@ const Header = () => {
 };
 
 export default Header;
-
