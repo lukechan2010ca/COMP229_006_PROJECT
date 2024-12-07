@@ -103,7 +103,11 @@ const MessageBoard = () => {
                     <p><strong>Title:</strong> {adDetails.title}</p>
                     <p><strong>Description:</strong> {adDetails.description}</p>
                     <p><strong>Price:</strong> ${adDetails.price}</p>
-                    <p><strong>Expiration Date:</strong> {adDetails.expirationDate}</p>
+                    <p><strong>Expiration Date: </strong> 
+                        {adDetails.expirationDate 
+                            ? new Date(adDetails.expirationDate).toLocaleDateString('en-CA') 
+                            : 'N/A'}
+                    </p>
                     <p><strong>Tags:</strong> {adDetails.tags?.join(", ")}</p>
                 </div>
             )}
