@@ -2,7 +2,8 @@ import { Outlet, NavLink, Link, useLocation } from "react-router-dom";
 import team_logo from "../../assets/team_logo.jpg"
 import { isAuthenticated, getUsername, clearJWT,getUserId } from "../auth/auth-helper";
 import backgroundImage from '../../assets/background.jpeg';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const Header = () => {  
 
@@ -37,7 +38,7 @@ const Header = () => {
                 </NavLink>
               </li>
               <li className="nav-item dropdown">
-                <Link className='nav-link dropdown-toggle' to="#" role="button" data-bs-toggle="dropdown">
+                <Link className='nav-link dropdown-toggle' to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i className="fa-solid fa-barcode"></i> Ad
                 </Link>
                 <ul className="dropdown-menu" style={{backgroundColor: "rgba(255, 255, 255, 0.8)" }}>

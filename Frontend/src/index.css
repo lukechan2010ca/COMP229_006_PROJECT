@@ -71,7 +71,6 @@ footer {
 }
 
 
-
 .custom-navbar {
   /* Replicating bg-dark */
   background-color: #343a40; /* Bootstrap's dark background color */
@@ -81,7 +80,7 @@ footer {
   /* Makes links and text light-colored */
   --bs-navbar-color: rgba(255, 255, 255, 0.55);
   --bs-navbar-hover-color: rgba(255, 255, 255, 0.75);
-  --bs-navbar-active-color: #fff;
+  --bs-navbar-active-color: rgba(255, 255, 255, 0.75);
 
   /* Replicating navbar-expand-sm */
   @media (min-width: 576px) {
