@@ -60,12 +60,7 @@ const MessageBoard = () => {
         }
     };
 
-    const handleAnswerChange = (index, answer) => {
-        let updatedQuestions = [...questions];
-        updatedQuestions[index].answer = answer;
-        setQuestions(updatedQuestions);
-    };
-
+  
     const handleAnswerSubmit = (e, questionId, index) => {
         e.preventDefault();
         const answerText = questions[index].answer;
@@ -93,8 +88,6 @@ const MessageBoard = () => {
 
     return (
         <div className="container" style={{ paddingTop: 80 }}>
-            
-
             {/* Product Details Section */}
             {adDetails && (
                 <div className="mb-4">
@@ -139,8 +132,12 @@ const MessageBoard = () => {
                                             type="text"
                                             className="form-control"
                                             placeholder="Write an answer"
-                                            value={q.answer || ""}
-                                            onChange={(e) => handleAnswerChange(index, e.target.value)}
+                                            value={questions[index]?.answer || ""}
+                                            onChange={(e) => {
+                                                const updatedQuestions = [...questions];
+                                                updatedQuestions[index] = { ...updatedQuestions[index], answer: e.target.value };
+                                                setQuestions(updatedQuestions);
+                                            }}
                                         />
                                         <button type="submit" className="btn btn-success mt-2">Submit Answer</button>
                                     </form>
@@ -156,4 +153,8 @@ const MessageBoard = () => {
     );
 };
 
+<<<<<<< Updated upstream
 export default MessageBoard;
+=======
+export default MessageBoard
+>>>>>>> Stashed changes
