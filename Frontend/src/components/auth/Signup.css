@@ -76,7 +76,7 @@
     color: black;
   }
 
-  .btn-primary mt-2 {
+  .btn-success {
     background: linear-gradient(to right, rgb(28, 28, 28), rgba(192, 192, 192, 0.73));
     border: #224abe;
     padding: 12px 20px;
@@ -85,7 +85,7 @@
     transition: all 0.3s ease;
   }
 
-  .btn-primary mt-2:hover {
+  .btn-success:hover {
     background: linear-gradient(to right, rgb(28, 28, 28), rgba(32, 153, 66, 0.73));
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(255, 215, 0, 0.2);
