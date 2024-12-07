@@ -7,7 +7,6 @@ const EditProfile = () => {
     let navigate = useNavigate();
     let { userId } = useParams();
     let [user, setUser] = useState(new UserModel());
-    const [success, setSuccess] = useState(false);
 
    useEffect(() => {
         //console.log(userId);
@@ -75,11 +74,6 @@ const EditProfile = () => {
                             <h2 className="text-center">Edit Profile</h2>
                         </div>
                         <div className="card-body">
-                            {success && (
-                                <div className="alert alert-success">
-                                    Profile updated successfully! Redirecting to Homepage...
-                                </div>
-                            )}
                             <form onSubmit={handleSubmit}>
                                 <div className="mb-3">
                                     <label className="form-label">First Name</label>
@@ -142,7 +136,7 @@ const EditProfile = () => {
                             </form>
                             <Link href="#" to="/" className="btn btn-warning">
                                 <i className="fas fa-undo"></i>
-                                Cancel
+                                Back to Homepage
                             </Link>
                         </div>
                     </div>
