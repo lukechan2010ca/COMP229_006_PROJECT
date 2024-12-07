@@ -153,8 +153,4 @@ const MessageBoard = () => {
     );
 };
 
-<<<<<<< Updated upstream
 export default MessageBoard;
-=======
-export default MessageBoard
->>>>>>> Stashed changes
