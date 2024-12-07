@@ -55,6 +55,22 @@
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
+
+  .btn-warning {
+    background: linear-gradient(to right, black, black);
+    border: #FFC107;
+    padding: 12px 20px;
+    width: 100%;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-warning:hover {
+    background: linear-gradient(to right, #FFD945, #FFD945);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: black;
+  }
   
   .alert-danger, .alert-success {
     border-radius: 8px;
