@@ -1,4 +1,5 @@
 import { getToken } from "../components/auth/auth-helper";
+
 let apiURL = process.env.REACT_APP_API_URL;
 
 // Function to get all questions related to an ad by adId

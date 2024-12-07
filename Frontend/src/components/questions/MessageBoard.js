@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";//extract URL parameters
 import { getQuestionsByAdId, createQuestion, answerQuestion } from "../../datasource/api-question";
 import { getToken } from "../auth/auth-helper";
 import { read } from "../../datasource/api-ad";
+import './MessageBoard.css';
 //define functional component
 const MessageBoard = () => {
     let { adId } = useParams();

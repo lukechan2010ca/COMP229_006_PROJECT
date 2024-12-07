@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import { create } from "../../datasource/api-ad";
 import AdModel from "../../datasource/adModel";
+import '../ad/Ad.css';
 
 const AddAd = () => {
 
@@ -129,7 +130,7 @@ const AddAd = () => {
                         </div>
                         <br />
 
-                        <button className="btn btn-primary" type="submit">
+                        <button className="btn btn-primary" type="submit" >
                             <i className="fas fa-edit"></i>
                             Submit
                         </button>

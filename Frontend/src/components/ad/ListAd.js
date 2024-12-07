@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { list } from "../../datasource/api-ad";
 import { Link } from "react-router-dom";
 import { getUserId, isAuthenticated } from "../auth/auth-helper";
+import '../ad/Ad.css';
 
 //let apiURL = process.env.REACT_APP_API_URL;
 const ListAd = () => {

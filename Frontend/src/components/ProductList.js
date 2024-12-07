@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import './ProductList.css';
 
-let apiURL = process.env.REACT_APP_API_URL;
-//let apiURL = "http://localhost:3001";
+//let apiURL = process.env.REACT_APP_API_URL;
+let apiURL = "http://localhost:3001";
 const list = async () => {
   try {
     let response = await fetch(apiURL + '/ad/list', {
