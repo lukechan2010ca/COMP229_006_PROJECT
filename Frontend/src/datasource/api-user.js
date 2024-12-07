@@ -1,5 +1,4 @@
-import { getToken,getUserId } from "../components/auth/auth-helper";
-
+let apiURL = process.env.REACT_APP_API_URL;
 //let apiURL = "http://localhost:3001";
 const signin = async (user) => {
     try {
@@ -36,15 +35,17 @@ const signup = async (user) => {
 
 const editProfile = async (user, userId) => {
     try {
-        let response = await fetch(apiURL + '/user/edit/' + userId, {
+        let response = await fetch(`${apiURL}/users/edit/${userId}`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + getToken()
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(user)
         })
+        console.log("this is the part of api-user.js");
+        console.log(user);
+        console.log(JSON.stringify(user, null, 2));
         return await response.json()
     } catch (err) {
         console.log(err)

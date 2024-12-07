@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { editProfile, getUserProfile } from "../../datasource/api-user";
 import UserModel from "../../datasource/userModel";
@@ -7,18 +7,20 @@ const EditProfile = () => {
     let navigate = useNavigate();
     let { userId } = useParams();
     let [user, setUser] = useState(new UserModel());
+    const [success, setSuccess] = useState(false);
 
-    useEffect(() => {
-        getUserProfile(userId).then((response) => {
-            if (response) {
+   useEffect(() => {
+        //console.log(userId);
+        getUserProfile(userId).then((oldUserDetails) => {
+            if (oldUserDetails) {
                 setUser(new UserModel(
-                    response._id,
-                    response.firstName,
-                    response.lastName,
-                    response.username,
-                    response.email,
-                    response.password
+                    oldUserDetails.firstName,
+                    oldUserDetails.lastName,
+                    oldUserDetails.username,
+                    oldUserDetails.email,
+                    oldUserDetails.password
                 ));
+                //console.log("this is old User data:", oldUserDetails);
             }
         }).catch(err => {
             alert(err.message);
@@ -37,24 +39,30 @@ const EditProfile = () => {
     const handleSubmit = (event) => {
         event.preventDefault(); 
         let newUser = {
-            id: user.id,
             firstName: user.firstName,
             lastName: user.lastName,
             username: user.username,
             email: user.email,
             password: user.password
         };
+        //console.log("this is new User data:", newUser);
+        //console.log(JSON.stringify(newUser, null, 2));
 
-        editProfile(newUser, userId).then(response => {
+
+        editProfile(newUser,userId).then(response => {
             if (response && response.success) {
                 alert(response.message);
                 navigate("/");
+                setSuccess(true);
             } else {
                 alert(response.message);
             }
         }).catch(err => {
             alert(err.message);
             console.log(err);
+            /* console.log(newUser);
+            console.log(JSON.stringify(newUser, null, 2));
+            console.log(JSON.stringify(user, null, 2)); */
         });
     };
 
@@ -67,12 +75,7 @@ const EditProfile = () => {
                             <h2 className="text-center">Edit Profile</h2>
                         </div>
                         <div className="card-body">
-                            {user.error && (
-                                <div className="alert alert-danger">
-                                    {user.error}
-                                </div>
-                            )}
-                            {user.success && (
+                            {success && (
                                 <div className="alert alert-success">
                                     Profile updated successfully! Redirecting to Homepage...
                                 </div>
@@ -147,6 +150,6 @@ const EditProfile = () => {
             </div>
         </div>
     );
-};
+}; 
 
 export default EditProfile;

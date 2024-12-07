@@ -13,7 +13,7 @@ router.post('/signin', authController.signin);
 router.get('/list', usersController.list);
 router.post('/create', usersController.create);
 router.get('/get/:userID', usersController.userGet, usersController.userByID);
-router.put('/edit/:userID', authController.signin, usersController.update);
+router.put('/edit/:userID', usersController.update);
 router.delete('/delete/:userID', usersController.remove);
 
 module.exports = router;
